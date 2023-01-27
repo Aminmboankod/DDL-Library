@@ -101,9 +101,14 @@ In your report, highlight the aspects that you think are more important and inte
 ## Relational diagram
 ![diagram](/doc/Diagrama%20Relacional%20BBDD.drawio.png)
 ## Queries
+What is the number of books published by the author with ID = 4?
 ```
--
--
--
+SELECT COUNT(*) FROM book WHERE author_ID = 4;
+```
+![first](/doc/first.png)
 
+/* What are the names of the authors with a book in the library? */
 ```
+SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE book_ID IN (SELECT book_ID FROM library));
+```
+![two](/doc/two.png)

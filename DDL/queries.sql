@@ -56,9 +56,6 @@ SELECT COUNT(*) FROM book WHERE author_ID = 4;
 /* What are the names of authors with a book in the library and published before 2000? */
 SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE book_ID IN (SELECT book_ID FROM library) AND ISBN < 2000);
 
-/* What are the names of users with an outstanding loan before 2023-03-01? */
-SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn IS NULL AND dateLending < '2023-03-01');
-
 /* What are the titles of the books published by Nadia Ameziane Garcia that are in the library? */
 SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Nadia Ameziane Garcia') AND book_ID IN (SELECT book_ID FROM library);
 
