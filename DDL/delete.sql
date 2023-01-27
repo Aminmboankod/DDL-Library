@@ -1,5 +1,5 @@
 
-USE bookPalma;
+USE booksPalma;
 
 TRUNCATE TABLE  user;
 TRUNCATE TABLE  author;
