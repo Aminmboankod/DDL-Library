@@ -1,2 +1,8 @@
 
-DROP DATABASE booksPalma;
+USE bookPalma;
+
+TRUNCATE TABLE  user;
+TRUNCATE TABLE  author;
+TRUNCATE TABLE  book;
+TRUNCATE TABLE  library;
+TRUNCATE TABLE  lending;

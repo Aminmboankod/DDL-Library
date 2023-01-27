@@ -40,7 +40,7 @@ INSERT INTO library (book_ID, library_location) VALUES
     (4, 'aisle A-3'),
     (5, 'aisle D-5'),
     (9, 'aisle C-1'),
-    (7, 'aisle A-2'),
+    (7, 'aisle A-2');
 
 
 INSERT INTO lending (user_ID, book_ID, dateReturn, dateLending) VALUES 
