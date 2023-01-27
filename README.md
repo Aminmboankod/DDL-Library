@@ -57,12 +57,46 @@ In your report, highlight the aspects that you think are more important and inte
 ```
 ### Use
 
-```
--
--
--
 
-```
+- Add the ddl.sql file to your database manager like this:
+
+    ```
+    sudo mariadb < ddl.sql
+    ```
+- Enter your database manager
+    ```
+    sudo mariadb
+    ```
+- To check that "booksPalma" has been added enter the following command:
+    ```
+    MariaDB [(none)]> show databases;
+    ```
+    ![databases](/doc/databases.png)
+- Select booksPalma:
+    ```
+    MariaDB [(none)]> use booksPalma;
+    ```
+- Display the tables with the following command:
+    ```
+    MariaDB [booksPalma]> show tables;
+    ```
+    ![tables](/doc/tables.png)
+- We check that the specifications of each column have been entered correctly and we check the values
+    ```
+    MariaDB [booksPalma]> describe book;
+    MariaDB [booksPalma]> select * FROM book;
+    ```
+    ![book-table](/doc/book.png)
+- Since we have not entered data, we will see that it tells us that it is empty. Therefore, in the following steps we are going to introduce the data with the file "dml.sql" and we will show them by terminal
+
+    ```
+    > sudo mariadb < dml.sql
+    > sudo mariadb
+    > show databases;
+    > use booksPalma;
+    > SELECT * FROM book;
+    ```
+    ![book-table-empty](/doc/booktable.png)
 
 ## Relational diagram
 ![diagram](/doc/Diagrama%20Relacional%20BBDD.drawio.png)
