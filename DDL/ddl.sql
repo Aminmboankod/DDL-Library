@@ -1,50 +1,51 @@
 /*
-Script de creacion de base de datos y sus correspondientes tablas 
-relacionadas de una gestión de bibliotecas ficticia
+Script to create a database and its related tables of a fictitious library management 
+related to a fictitious library management
 
-Curso: Grado Superior Desarrollo Web
-Autores: Adrián López y Amin Mustafa
+Course: GS Web Development
+Authors: Adrianlm17 & Aminmboankod
 */
 
-DROP DATABASE IF EXISTS llibresPalma;
-CREATE DATABASE llibresPalma;
-USE llibresPalma;
-CREATE TABLE usuario (
-    usuario_ID INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(64),
-    apellidos VARCHAR(128),
-    telefono VARCHAR(9),
-    direccion VARCHAR(128)
-);
-CREATE TABLE autor (
-    autor_ID INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(64)
+DROP DATABASE IF EXISTS booksPalma;
+CREATE DATABASE booksPalma;
+USE booksPalma;
+
+CREATE TABLE user (
+    user_ID INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(64),
+    telephone VARCHAR(9),
+    user_address VARCHAR(128)
 );
 
-CREATE TABLE libro (
-    libro_ID INT PRIMARY KEY AUTO_INCREMENT,
-    autor_ID INT,
-    titulo VARCHAR(64) NOT NULL,
+CREATE TABLE author (
+    author_ID INT PRIMARY KEY AUTO_INCREMENT,
+    author_name VARCHAR(64)
+);
+
+CREATE TABLE book (
+    book_ID INT PRIMARY KEY AUTO_INCREMENT,
+    author_ID INT,
+    title VARCHAR(64) NOT NULL,
     ISBN VARCHAR(13) UNIQUE NOT NULL,
     editorial VARCHAR(64),
-    FOREIGN KEY (autor_ID) REFERENCES autor(autor_ID)
+    FOREIGN KEY (author_ID) REFERENCES author(author_ID)
 
 );
 
-CREATE TABLE biblioteca (
-	biblioteca_ID INT PRIMARY KEY AUTO_INCREMENT,
-	libro_ID INT,
-    ejemplares INT,
-	localizacion VARCHAR(128),
-    FOREIGN KEY (libro_ID) REFERENCES libro(libro_ID)
+CREATE TABLE library (
+	library_ID INT PRIMARY KEY AUTO_INCREMENT,
+	book_ID INT,
+	library_location VARCHAR(128),
+    FOREIGN KEY (book_ID) REFERENCES book(book_ID)
 );
 
-CREATE TABLE prestamo (
-    prestamo_ID INT PRIMARY KEY AUTO_INCREMENT,
-    usuario_ID INT,
-    ejemplar_ID INT,
-    devolucion DATE,
-    prestamo DATE,
-    FOREIGN KEY (usuario_ID) REFERENCES usuario(usuario_ID)
+CREATE TABLE lending (
+    lending_ID INT PRIMARY KEY AUTO_INCREMENT,
+    user_ID INT,
+    book_ID INT,
+    dateLending DATE,
+    dateReturn DATE,
+    FOREIGN KEY (user_ID) REFERENCES user(user_ID),
+    FOREIGN KEY (book_ID) REFERENCES book(book_ID)
 );
 

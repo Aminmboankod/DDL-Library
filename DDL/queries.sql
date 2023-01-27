@@ -1,67 +1,66 @@
 /*
-Script de creacion de base de datos y sus correspondientes tablas 
-relacionadas de una gestión de bibliotecas ficticia
+Verification script, which performs 20 different tests to verify that our database is working correctly.
 
-Curso: Grado Superior Desarrollo Web
-Autores: Adrián López y Amin Mustafa
+Course: GS Web Development
+Authors: Adrianlm17 & Aminmboankod
 */
 
-/*¿Cuál es el nombre y dirección de los usuarios?*/
-SELECT nombre, direccion FROM usuario;
+/*What is the name and address of the users? */
+SELECT user_name, user_address FROM user;
  
-/*¿Cuántos ejemplares hay en la sala de lectura 3?*/
-SELECT ejemplares FROM biblioteca WHERE localizacion = 'Sala de lectura 3';
+/*How many copies are in aisle A-2? */
+SELECT library_location FROM library WHERE library_location = 'aisle A-2';
 
-/* ¿Cuáles son los títulos de los libros publicados por Hernán Lavín Cerda?*/
-SELECT titulo FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Hernán Lavín Cerda');
+/* What are the titles of the books published by Hernán Lavín Cerda? */
+SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Hernán Lavín Cerda');
 
-/* ¿Cuál es el ISBN del libro publicado por Andrew Hodges?*/
-SELECT ISBN FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Andrew Hodges');
+/* What is the ISBN of the book published by Andrew Hodges? */
+SELECT ISBN FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Andrew Hodges');
 
-/* ¿Cuáles son los nombres de los usuarios que tienen un préstamo?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo);
+/* What are the names of the users who have a loan? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending);
 
-/* ¿Cuál es la cantidad de libros publicados por Nadia Ameziane Garcia?*/
-SELECT COUNT(*) FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Nadia Ameziane Garcia');
+/* How many books has Nadia Ameziane Garcia published? */
+SELECT COUNT(*) FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Nadia Ameziane Garcia');
 
-/* ¿Cuáles son los títulos de los libros publicados por Stephan Hawking que están en la biblioteca?*/
-SELECT titulo FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Stephe Hawking') AND libro_ID IN (SELECT libro_ID FROM biblioteca);
+/* What are the titles of the books published by Stephan Hawking that are in the library? */
+SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Stephe Hawking') AND book_ID IN (SELECT book_ID FROM library);
 
-/* ¿Cuáles son los nombres de los usuarios con un préstamo que devuelvan un libro después del 2023-03-01?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo WHERE devolucion > '2023-03-01');
+/* What are the names of users with a loan who return a book after 2023-03-01? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn > '2023-03-01');
 
-/* ¿Cuál es la cantidad de libros publicados por el autor con ID = 1?*/
-SELECT COUNT(*) FROM libro WHERE autor_ID = 1;
+/* What is the number of books published by the author with ID = 1? */
+SELECT COUNT(*) FROM book WHERE author_ID = 1;
 
-/* ¿Cuál es el nombre de los usuarios con un préstamo pendiente?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo WHERE devolucion IS NULL);
+/* What is the name of the users with an outstanding loan? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn IS NULL);
 
-/* ¿Cuáles son los títulos de los libros en la localización Sala de lectura 5?*/
-SELECT titulo FROM libro WHERE libro_ID IN (SELECT libro_ID FROM biblioteca WHERE localizacion = 'Sala de lectura 5');
+/* What are the titles of the books in aisle D-5? */
+SELECT title FROM book WHERE book_ID IN (SELECT book_ID FROM library WHERE library_location = 'aisle D-5');
 
-/* ¿Cuáles son los nombres de los autores con un libro en la biblioteca?*/
-SELECT nombre FROM autor WHERE autor_ID IN (SELECT autor_ID FROM libro WHERE libro_ID IN (SELECT libro_ID FROM biblioteca));
+/* What are the names of the authors with a book in the library? */
+SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE book_ID IN (SELECT book_ID FROM library));
 
-/* ¿Cuál es el nombre de los autores con un libro publicado después del año 2017?*/
-SELECT nombre FROM autor WHERE autor_ID IN (SELECT autor_ID FROM libro WHERE ISBN > 2017);
+/* What are the names of authors with a book published after 2017? */
+SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE ISBN > 2017);
 
-/* ¿Cuáles son los títulos de los libros publicados por Andrew Hodges que están en la biblioteca?*/
-SELECT titulo FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Andrew Hodges') AND libro_ID IN (SELECT libro_ID FROM biblioteca);
+/* What are the titles of the books published by Andrew Hodges that are in the library? */
+SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Andrew Hodges') AND book_ID IN (SELECT book_ID FROM library);
 
-/* ¿Cuál es el nombre de los usuarios con un préstamo pendiente después del 2023-06-01?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo WHERE devolucion IS NULL AND prestamo > '2023-06-01');
+/* What is the name of the users with an outstanding loan after 2023-06-01? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn IS NULL AND dateLending > '2023-06-01');
 
-/* ¿Cuál es la cantidad de libros publicados por el autor con ID = 4?*/
-SELECT COUNT(*) FROM libro WHERE autor_ID = 4;
+/* What is the number of books published by the author with ID = 4? */
+SELECT COUNT(*) FROM book WHERE author_ID = 4;
 
-/* ¿Cuáles son los nombres de los autores con un libro en la biblioteca y publicado antes del año 2000?*/
-SELECT nombre FROM autor WHERE autor_ID IN (SELECT autor_ID FROM libro WHERE libro_ID IN (SELECT libro_ID FROM biblioteca) AND ISBN < 2000);
+/* What are the names of authors with a book in the library and published before 2000? */
+SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE book_ID IN (SELECT book_ID FROM library) AND ISBN < 2000);
 
-/* ¿Cuáles son los nombres de los usuarios con un préstamo pendiente antes del 2023-03-01?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo WHERE devolucion IS NULL AND prestamo < '2023-03-01');
+/* What are the names of users with an outstanding loan before 2023-03-01? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn IS NULL AND dateLending < '2023-03-01');
 
-/* ¿Cuáles son los títulos de los libros publicados por Nadia Ameziane Garcia que están en la biblioteca?*/
-SELECT titulo FROM libro WHERE autor_ID = (SELECT autor_ID FROM autor WHERE nombre = 'Nadia Ameziane Garcia') AND libro_ID IN (SELECT libro_ID FROM biblioteca);
+/* What are the titles of the books published by Nadia Ameziane Garcia that are in the library? */
+SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Nadia Ameziane Garcia') AND book_ID IN (SELECT book_ID FROM library);
 
-/* ¿Cuál es el nombre de los usuarios con un préstamo pendiente entre el 2023-03-01 y el 2023-06-01?*/
-SELECT nombre FROM usuario WHERE usuario_ID IN (SELECT usuario_ID FROM prestamo WHERE devolucion IS NULL AND prestamo BETWEEN '2023-03-01' AND '2023-06-01');
+/* What is the name of users with an outstanding loan between 2023-03-01 and 2023-06-01? */
+SELECT user_name FROM user WHERE user_ID IN (SELECT user_ID FROM lending WHERE dateReturn IS NULL AND dateLending BETWEEN '2023-03-01' AND '2023-06-01');
