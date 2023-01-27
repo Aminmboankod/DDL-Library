@@ -3,7 +3,6 @@
 # Index
 
 +   [Instrucciones](#instructions)
-+   [Requierements](#requierements)
 +   [Use](#use)
 +   [Relational Diagram](#relational-diagram)
 +   [Queries](#queries)
@@ -22,13 +21,13 @@ If possible, mention the different sources of information you have used to prepa
 Take the relational diagram you created in the previous work unit. Change it, correct it or improve it if needed. Include the modified version in your report.
 
 Create the script required to generate the database corresponding to your relational diagram. If possible, use the following keywords.
-IF NOT EXISTS
-PRIMARY KEY
-FOREIGN KEY
-NOT NULL
-CHECK
-UNIQUE KEY
-AUTO_INCREMENT
+    IF NOT EXISTS
+    PRIMARY KEY
+    FOREIGN KEY
+    NOT NULL
+    CHECK
+    UNIQUE KEY
+    AUTO_INCREMENT
 
 If possible, use different data types: INT, VARCHAR, DECIMAL, DATE…
 
@@ -46,15 +45,6 @@ You can submit your assignment as a github repository if you think it is more ap
 In your report, highlight the aspects that you think are more important and interesting (worth a better grade).
 ```
 
-
-### Requieremnts
-
-```
--
--
--
-
-```
 ### Use
 
 
