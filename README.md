@@ -3,10 +3,8 @@
 # Index
 
 +   [Instrucciones](#instructions)
-
-+   [Manual](#manual)
-    +   [Requierements](#requierements)
-    +   [Use](#use)
++   [Requierements](#requierements)
++   [Use](#use)
 +   [Relational Diagram](#relational-diagram)
 +   [Queries](#queries)
 
@@ -48,8 +46,6 @@ You can submit your assignment as a github repository if you think it is more ap
 In your report, highlight the aspects that you think are more important and interesting (worth a better grade).
 ```
 
-
-## Manual
 
 ### Requieremnts
 
