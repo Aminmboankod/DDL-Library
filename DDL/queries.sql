@@ -38,8 +38,6 @@ SELECT title FROM book WHERE book_ID IN (SELECT book_ID FROM library WHERE libra
 /* What are the names of the authors with a book in the library? */
 SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE book_ID IN (SELECT book_ID FROM library));
 
-/* What are the names of authors with a book published after 2017? */
-SELECT author_name FROM author WHERE author_ID IN (SELECT author_ID FROM book WHERE ISBN > 2017);
 
 /* What are the titles of the books published by Andrew Hodges that are in the library? */
 SELECT title FROM book WHERE author_ID = (SELECT author_ID FROM author WHERE author_name = 'Andrew Hodges') AND book_ID IN (SELECT book_ID FROM library);
