@@ -2,7 +2,7 @@
 
 # Index
 
-+   [Instrucciones](#instructions)
++   [Instructions](#instructions)
 +   [Use](#use)
 +   [Relational Diagram](#relational-diagram)
 +   [Queries](#queries)
